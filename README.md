@@ -22,3 +22,11 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+# Tipcs
+- Props
+- Methods
+- Computed Properties
+- Components
+- Validations
