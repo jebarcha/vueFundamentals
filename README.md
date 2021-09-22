@@ -24,7 +24,7 @@ npm run test:unit
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-# Tipcs
+# Topics
 - Props
 - Methods
 - Computed Properties
