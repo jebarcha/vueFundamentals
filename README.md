@@ -30,3 +30,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - Computed Properties
 - Components
 - Validations
+- Watch (observable) See Indecision.vue component
