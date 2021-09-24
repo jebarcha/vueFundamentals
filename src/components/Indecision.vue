@@ -1,6 +1,6 @@
 <template>
     <!-- <img src="https://via.placeholder.com/250" alt="bg"> -->
-    <img v-if="image" :src="image" alt="bg">
+    <img v-if="img" :src="img" alt="bg">
     <div class="bg-dark"></div>
 
     <div class="indecision-container">
@@ -23,27 +23,36 @@ export default {
         return {
             question:null,
             answer:null,
-            image:null,
+            img:null,
             isValidQuestion: false
         }
     },
     methods: {
         async getAnswer() {
-            this.answer = 'Thinking...'
-
-            const {answer, image} = await fetch('https://yesno.wtf/api').then( r => r.json() )
-            //console.log(answer,image)
-            this.answer = answer === 'yes' ? 'Si' : 'No'
-            this.image = image
+            try {
+                this.answer = 'Thinking...'
+    
+                const {answer, image} = await fetch('https://yesno.wtf/api').then( r => r.json() )
+                
+                this.answer = answer === 'yes' ? 'Si!' : 'No!'
+                this.img = image                
+            } catch (error) {
+                console.log(error)
+                this.answer = 'Cannot load image from API'
+                this.img = null
+            }
         }
     },
     watch: {
         question(value, oldValue) {
             this.isValidQuestion = false;
-            //console.log({value, oldValue})
+
+            console.log({ value })
+
             if (!value.includes('?')) return
             
             this.isValidQuestion = true;
+            console.log({ value })
 
             this.getAnswer()
         }

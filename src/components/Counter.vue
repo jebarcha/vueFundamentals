@@ -1,11 +1,12 @@
 <template>
-    <h2>{{ customTitle }}  {{ start }}</h2>
-    <p> {{ counter }} <sup>2</sup>= {{ squareCounted }}</p>
-    <div>
-        <!-- <button v-on:click="increase">+1</button> -->
+    <h2>{{ customTitle }} </h2>
+    <p> {{ counter }} <sup>2</sup> = {{ squareCounter }} </p>
+    <p data-testid="counter">{{ counter }} </p>
+    <div class="buttons-container">
         <button @click="increase">+1</button>
         <button @click="decrease">-1</button>
     </div>
+
 </template>
 
 <script>
@@ -15,35 +16,31 @@ export default {
         start: {
             type: Number,
             default: 100,
-            validator: function(value) {
-                return (value > 100)
+            // required: true
+            validator( value ) {
+                return value >= 0
             }
-            //required: true
         }
     },
-    //props: ['title', 'start'],
-    //name: 'loquesea',
+    // name: 'Patito'
     data() {
         return {
-            counter: this.start //5
+            counter: this.start
         }
     },
     methods: {
         getSquareValue() {
-            console.log('getSquareValue');
             return this.counter * this.counter
         },
         increase() {
-            //this.counter++
-            this.counter = this.counter + 1
+            this.counter++
         },
         decrease() {
             this.counter--
-        }
+        },
     },
     computed: {
-        squareCounted() {
-            console.log('computed squareCounted')
+        squareCounter() {
             return this.counter * this.counter
         },
         customTitle() {
